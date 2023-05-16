@@ -1,7 +1,7 @@
 #ifndef GPIO_INTERFACE_H
 #define GPIO_INTERFACE_H
 
-#include "Types.h"
+#include "../../common/Types.h"
 
 typedef enum
 {

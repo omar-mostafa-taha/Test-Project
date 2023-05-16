@@ -4,15 +4,14 @@
  * Authors: Ahmed Nashaat - Mohamed Sherif - Kariem ALaa - Omar Mostafa - Omar Shabaan
  ****************************************************************************************/
 
-#include "./headers/Types.h"
-#include "./headers/BIT_MATH.h"
-#include "./headers/GPIO_config.h"
-#include "./headers/GPIO_private.h"
-#include "./headers/GPIO_interface.h"
-#include "./headers/tm4c123gh6pm.h"
-#include "./headers/TExaS.h"
-#include "./headers/Timer.h"
-#include "./headers/NVIC_interface.h"
+#include "../../common/Types.h"
+#include "../../common/BIT_MATH.h"
+#include "GPIO_config.h"
+#include "GPIO_private.h"
+#include "GPIO_interface.h"
+#include "../../common/tm4c123gh6pm.h"
+
+
 
 volatile unsigned long delay;
 /************************************************************************************
