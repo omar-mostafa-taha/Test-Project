@@ -108,3 +108,322 @@ void DrawGrid()
 	displayPlayer(); 
 }
 
+
+/************************************************************************************
+ * Service Name   :StartGame
+ * Function Inputs : None
+ * Description: Function for starting to play
+ ************************************************************************************/
+void StartGame()
+{
+		
+	int row, col, lastRow, lastCol, lastCell;
+/********************Rigt Move*****************************************************/
+
+	if (Right)
+	{
+		Right = 0;
+		lastCell = currentCell; 
+		currentCell++;
+		if (currentCell == 3 || currentCell == 6 || currentCell == 9)
+			currentCell -=3;   
+		row = currentCell / 3; 
+		col = currentCell % 3;
+		
+		if (GameMatrix[currentCell] == 'X')
+		{
+			Nokia5110_PrintBMP(col * (SQUAREHEIGHT - 1) + 3 * col, (row + 1) * (SQUAREHEIGHT - 1) + 3 * row, hoveredX, 0);
+		}
+		else if (GameMatrix[currentCell] == 'O')
+		{
+			Nokia5110_PrintBMP(col * (SQUAREHEIGHT - 1) + 3 * col, (row + 1) * (SQUAREHEIGHT - 1) + 3 * row, hoveredO, 0);
+		}
+		else
+		{
+			Nokia5110_PrintBMP(col * (SQUAREHEIGHT - 1) + 3 * col, (row + 1) * (SQUAREHEIGHT - 1) + 3 * row, hoveredSquare, 0);
+		}
+
+		if (lastCell == 8 || lastCell == -1)
+		{
+			lastRow = 2;
+			lastCol = 2;
+			lastCell = 8;
+		}
+		else
+		{
+			lastRow = (lastCell) / 3;
+			lastCol = (lastCell) % 3;
+		}
+
+		if (GameMatrix[lastCell] == 'X')
+		{
+			Nokia5110_PrintBMP(lastCol * (SQUAREHEIGHT - 1) + 3 * lastCol, (lastRow + 1) * (SQUAREHEIGHT - 1) + 3 * lastRow, X, 0);
+		}
+		else if (GameMatrix[lastCell] == 'O')
+		{
+			Nokia5110_PrintBMP(lastCol * (SQUAREHEIGHT - 1) + 3 * lastCol, (lastRow + 1) * (SQUAREHEIGHT - 1) + 3 * lastRow, O, 0);
+		}
+		else
+		{
+			Nokia5110_PrintBMP(lastCol * (SQUAREHEIGHT - 1) + 3 * lastCol, (lastRow + 1) * (SQUAREHEIGHT - 1) + 3 * lastRow, Cell, 0); // not to leave the last cell hoovered
+		}
+		Nokia5110_DisplayBuffer();
+		displayPlayer();
+		Timer2_delay(10);
+	}
+/**********************Dwon Move****************************************************/	
+	if (Dwon)
+	{
+		Dwon = 0;
+		lastCell = currentCell; 
+		currentCell+=3;
+		if (currentCell == 9 || currentCell == 10 || currentCell ==11 )
+			currentCell -=9;   
+		row = currentCell / 3; 
+		col = currentCell % 3;
+		
+		if (GameMatrix[currentCell] == 'X')
+		{
+			Nokia5110_PrintBMP(col * (SQUAREHEIGHT - 1) + 3 * col, (row + 1) * (SQUAREHEIGHT - 1) + 3 * row, hoveredX, 0);
+		}
+		else if (GameMatrix[currentCell] == 'O')
+		{
+			Nokia5110_PrintBMP(col * (SQUAREHEIGHT - 1) + 3 * col, (row + 1) * (SQUAREHEIGHT - 1) + 3 * row, hoveredO, 0);
+		}
+		else
+		{
+			Nokia5110_PrintBMP(col * (SQUAREHEIGHT - 1) + 3 * col, (row + 1) * (SQUAREHEIGHT - 1) + 3 * row, hoveredSquare, 0);
+		}
+
+		if (lastCell == 8 || lastCell == -1)
+		{
+			lastRow = 2;
+			lastCol = 2;
+			lastCell = 8;
+		}
+		else
+		{
+			lastRow = (lastCell) / 3;
+			lastCol = (lastCell) % 3;
+		}
+
+		if (GameMatrix[lastCell] == 'X')
+		{
+			Nokia5110_PrintBMP(lastCol * (SQUAREHEIGHT - 1) + 3 * lastCol, (lastRow + 1) * (SQUAREHEIGHT - 1) + 3 * lastRow, X, 0);
+		}
+		else if (GameMatrix[lastCell] == 'O')
+		{
+			Nokia5110_PrintBMP(lastCol * (SQUAREHEIGHT - 1) + 3 * lastCol, (lastRow + 1) * (SQUAREHEIGHT - 1) + 3 * lastRow, O, 0);
+		}
+		else
+		{
+			Nokia5110_PrintBMP(lastCol * (SQUAREHEIGHT - 1) + 3 * lastCol, (lastRow + 1) * (SQUAREHEIGHT - 1) + 3 * lastRow, Cell, 0); // not to leave the last cell hoovered
+		}
+		Nokia5110_DisplayBuffer();
+		displayPlayer();
+		Timer2_delay(10);
+	}
+	
+/***************************************Left Move********************************/	
+		if (Left)
+	{
+		Left = 0;
+		lastCell = currentCell; 
+		currentCell--;
+		if (currentCell == -1 || currentCell == 2 || currentCell == 5)
+			currentCell+=3;  
+		row = currentCell / 3; 
+		col = currentCell % 3;
+
+		if (GameMatrix[currentCell] == 'X')
+		{
+			Nokia5110_PrintBMP(col * (SQUAREHEIGHT - 1) + 3 * col, (row + 1) * (SQUAREHEIGHT - 1) + 3 * row, hoveredX, 0);
+		}
+		else if (GameMatrix[currentCell] == 'O')
+		{
+			Nokia5110_PrintBMP(col * (SQUAREHEIGHT - 1) + 3 * col, (row + 1) * (SQUAREHEIGHT - 1) + 3 * row, hoveredO, 0);
+		}
+		else
+		{
+			Nokia5110_PrintBMP(col * (SQUAREHEIGHT - 1) + 3 * col, (row + 1) * (SQUAREHEIGHT - 1) + 3 * row, hoveredSquare, 0);
+		}
+		
+		if (lastCell == 8 || lastCell == -1)
+		{
+			lastRow = 2;
+			lastCol = 2;
+			lastCell = 8;
+		}
+		else
+		{
+			lastRow = (lastCell) / 3;
+			lastCol = (lastCell) % 3;
+		}
+
+		if (GameMatrix[lastCell] == 'X')
+		{
+			Nokia5110_PrintBMP(lastCol * (SQUAREHEIGHT - 1) + 3 * lastCol, (lastRow + 1) * (SQUAREHEIGHT - 1) + 3 * lastRow, X, 0);
+		}
+		else if (GameMatrix[lastCell] == 'O')
+		{
+			Nokia5110_PrintBMP(lastCol * (SQUAREHEIGHT - 1) + 3 * lastCol, (lastRow + 1) * (SQUAREHEIGHT - 1) + 3 * lastRow, O, 0);
+		}
+		else
+		{
+			Nokia5110_PrintBMP(lastCol * (SQUAREHEIGHT - 1) + 3 * lastCol, (lastRow + 1) * (SQUAREHEIGHT - 1) + 3 * lastRow, Cell, 0); // not to leave the last cell hoovered
+		}
+		Nokia5110_DisplayBuffer();
+		displayPlayer();
+		Timer2_delay(10);
+	}
+	
+/**************************Up move************************************************************/
+	if (Up)
+	{
+		Up = 0;
+		lastCell = currentCell; 
+		currentCell-=3;
+		if (currentCell == -3 || currentCell == -2 || currentCell ==-1 )
+			currentCell+=9;   
+		row = currentCell / 3; 
+		col = currentCell % 3;
+
+		if (GameMatrix[currentCell] == 'X')
+		{
+			Nokia5110_PrintBMP(col * (SQUAREHEIGHT - 1) + 3 * col, (row + 1) * (SQUAREHEIGHT - 1) + 3 * row, hoveredX, 0);
+		}
+		else if (GameMatrix[currentCell] == 'O')
+		{
+			Nokia5110_PrintBMP(col * (SQUAREHEIGHT - 1) + 3 * col, (row + 1) * (SQUAREHEIGHT - 1) + 3 * row, hoveredO, 0);
+		}
+		else
+		{
+			Nokia5110_PrintBMP(col * (SQUAREHEIGHT - 1) + 3 * col, (row + 1) * (SQUAREHEIGHT - 1) + 3 * row, hoveredSquare, 0);
+		}
+
+		if (lastCell == 8 || lastCell == -1)
+		{
+			lastRow = 2;
+			lastCol = 2;
+			lastCell = 8;
+		}
+		else
+		{
+			lastRow = (lastCell) / 3;
+			lastCol = (lastCell) % 3;
+		}
+
+		if (GameMatrix[lastCell] == 'X')
+		{
+			Nokia5110_PrintBMP(lastCol * (SQUAREHEIGHT - 1) + 3 * lastCol, (lastRow + 1) * (SQUAREHEIGHT - 1) + 3 * lastRow, X, 0);
+		}
+		else if (GameMatrix[lastCell] == 'O')
+		{
+			Nokia5110_PrintBMP(lastCol * (SQUAREHEIGHT - 1) + 3 * lastCol, (lastRow + 1) * (SQUAREHEIGHT - 1) + 3 * lastRow, O, 0);
+		}
+		else
+		{
+			Nokia5110_PrintBMP(lastCol * (SQUAREHEIGHT - 1) + 3 * lastCol, (lastRow + 1) * (SQUAREHEIGHT - 1) + 3 * lastRow, Cell, 0); // not to leave the last cell hoovered
+		}
+		Nokia5110_DisplayBuffer();
+		displayPlayer();
+		Timer2_delay(10);
+	}
+/***********************************Play Switch*******************************8*/
+	if (Sw5Flag && currentCell != -1)
+	{
+		Sw5Flag = 0;
+		if (GameMatrix[currentCell] == ' ')
+		{ 
+			row = currentCell / 3; 
+			col = currentCell % 3;
+
+			if (playletter == 'X')
+			{
+
+				Nokia5110_PrintBMP(col * (SQUAREHEIGHT - 1) + 3 * col, (row + 1) * (SQUAREHEIGHT - 1) + 3 * row, X, 0); 
+				GameMatrix[currentCell] = playletter;																
+				Clear_Led(3);
+				Set_Led(4);
+				if (checkWinner(playletter))
+				{ 
+					Display_Winner(playletter);
+					if (CheckPlayAgain())
+					{ 
+						GameReset();
+						CheckMode();
+						DrawGrid();
+						return; 
+					}
+					else
+					{			   
+						EndGame(); 
+						while (1)
+							; 
+					}
+				}
+				
+				playletter = 'O';
+			}
+		
+			else
+			{
+
+				Nokia5110_PrintBMP(col * (SQUAREHEIGHT - 1) + 3 * col, (row + 1) * (SQUAREHEIGHT - 1) + 3 * row, O, 0);
+				GameMatrix[currentCell] = playletter;
+				Clear_Led(4);
+				Set_Led(3);
+				if (checkWinner(playletter))
+				{
+					Display_Winner(playletter);
+					if (CheckPlayAgain())
+					{
+						GameReset();
+						DrawGrid();
+						return;
+					}
+					else
+					{
+						EndGame();
+						while (1)
+							;
+					}
+				}
+	
+				playletter = 'X';
+			}
+			Nokia5110_DisplayBuffer();
+			displayPlayer();
+			playedCells++;
+			if (playedCells == 9) 
+			{
+				displayDraw();
+				if (CheckPlayAgain())
+				{
+					GameReset();
+					DrawGrid();
+					return;
+				}
+				else
+				{
+					EndGame();
+					while (1)
+						;
+				}
+			}
+		}
+		else 
+		{
+
+			Nokia5110_SetCursor(7, 4);
+			Nokia5110_OutString("Busy");
+			Nokia5110_SetCursor(7, 5);
+			Nokia5110_OutString("Cell");
+      Set_Led(5);
+			ToggleLED(2);
+      Clear_Led(5);
+			displayPlayer();
+		}
+		Timer2_delay(10);
+	}
+}
