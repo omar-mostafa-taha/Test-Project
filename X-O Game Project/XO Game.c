@@ -531,3 +531,104 @@ int checkWinner(char player)
 	}
 	return 0; 
 }
+
+/************************************************************************************
+ * Function Name:displayDraw
+ * Function Inputs: None
+ * Description: Function to display if the players is draw
+ ************************************************************************************/
+void displayDraw()
+{
+	GPIO_PORTF_DATA_R = 0x0E;
+  ToggleLED(2);
+	Timer2_delay(5);
+	GPIO_PORTF_DATA_R = 0x00; 
+	
+	Nokia5110_SetCursor(1, 3);
+	Nokia5110_OutString("Players");
+	Nokia5110_SetCursor(1, 4);
+	Nokia5110_OutString("are Draw");
+	Timer2_delay(100);
+	Nokia5110_Clear();
+}
+
+/************************************************************************************
+ * Function Name:displayPlayer
+ * Function Inputs : None
+ * Description: Function to display whose has the role to play
+ ************************************************************************************/
+void displayPlayer()
+{
+	Nokia5110_SetCursor(7, 1);
+	Nokia5110_OutChar('[');
+	Nokia5110_OutChar(playletter);
+	Nokia5110_OutChar(']');
+	Nokia5110_SetCursor(7, 2);
+	Nokia5110_OutString("Move");
+}
+/************************************************************************************
+ * Function Name: CheckPlayAgain
+ * Function Inputs : none
+ * Description: function to ask player to play again or not
+ ************************************************************************************/
+int CheckPlayAgain()
+{
+	Nokia5110_ClearBuffer();
+  Nokia5110_SetCursor(1, 1);
+	Nokia5110_OutString("Play Again");
+	Nokia5110_SetCursor(1, 3);
+	Nokia5110_OutString("Right|Left");
+	Nokia5110_SetCursor(1, 4);
+	Nokia5110_OutString(" Yes | No");
+	while (1)
+	{
+		if (Right == 1)
+		{
+			Right = 0;
+			return 1;
+		}
+
+		if (Left == 1)
+		{
+			Left = 0;
+			return 0;
+		}
+	}
+
+}
+
+/************************************************************************************
+ * Function Name: CheckMode
+ * Function Inputs : none
+ * Description: function to select the mode of play (Switches- UART) 
+ ************************************************************************************/
+int CheckMode()
+{
+	Nokia5110_ClearBuffer();
+  Nokia5110_SetCursor(0, 1);
+	Nokia5110_OutString("Select Mode");
+	Nokia5110_SetCursor(0, 3);
+	Nokia5110_OutString("SWS | UART");
+	Nokia5110_SetCursor(0, 4);
+	Nokia5110_OutString("Left|Right");
+	while (1)
+	{
+			if(!GPIO_enuReadPinValue(GPIOF,PIN4)){
+			
+       uart=1;
+				return 1;
+		}
+
+			if(!GPIO_enuReadPinValue(GPIOF,PIN3)){
+			uart=0;
+				return 0;
+		}
+
+	}
+
+}
+
+void EndGame()
+{ 
+	Nokia5110_Clear();
+}
