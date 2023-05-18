@@ -427,3 +427,107 @@ void StartGame()
 		Timer2_delay(10);
 	}
 }
+/************************************************************************************
+ * Function Name:checkWinner
+ * Function Inputs: char player
+ * Description: Function to check the winner
+ ************************************************************************************/
+
+int checkWinner(char player)
+{
+	int Winning_cell_1 = 0, Winning_cell_2 = 0, Winning_cell_3 = 0, i; 
+	if (GameMatrix[0] == player && GameMatrix[1] == player && GameMatrix[2] == player)
+	{
+		Winning_cell_1 = 0;
+		Winning_cell_2 = 1;
+		Winning_cell_3 = 2;
+		i = 0;
+	}
+	else if (GameMatrix[3] == player && GameMatrix[4] == player && GameMatrix[5] == player)
+	{
+		Winning_cell_1 = 3;
+		Winning_cell_2 = 4;
+		Winning_cell_3 = 5;
+		i = 1;
+	}
+	else if (GameMatrix[6] == player && GameMatrix[7] == player && GameMatrix[8] == player)
+	{
+		Winning_cell_1 = 6;
+		Winning_cell_2 = 7;
+		Winning_cell_3 = 8;
+		i = 2;
+	}
+	else if (GameMatrix[0] == player && GameMatrix[3] == player && GameMatrix[6] == player)
+	{
+		Winning_cell_1 = 0;
+		Winning_cell_2 = 3;
+		Winning_cell_3 = 6;
+		i = 3;
+	}
+	else if (GameMatrix[1] == player && GameMatrix[4] == player && GameMatrix[7] == player)
+	{
+		Winning_cell_1 = 1;
+		Winning_cell_2 = 4;
+		Winning_cell_3 = 7;
+		i = 4;
+	}
+	else if (GameMatrix[2] == player && GameMatrix[5] == player && GameMatrix[8] == player)
+	{
+		Winning_cell_1 = 2;
+		Winning_cell_2 = 5;
+		Winning_cell_3 = 8;
+		i = 5;
+	}
+	else if (GameMatrix[0] == player && GameMatrix[4] == player && GameMatrix[8] == player)
+	{
+		Winning_cell_1 = 0;
+		Winning_cell_2 = 4;
+		Winning_cell_3 = 8;
+		i = 6;
+	}
+	else if (GameMatrix[2] == player && GameMatrix[4] == player && GameMatrix[6] == player)
+	{
+		Winning_cell_1 = 2;
+		Winning_cell_2 = 4;
+		Winning_cell_3 = 6;
+		i = 7;
+	}
+	if (Winning_cell_1 || Winning_cell_2 || Winning_cell_2)
+	{
+		if (player == 'X')
+		{ /*Hoovering the 3 selected winning cells*/
+			Nokia5110_PrintBMP((Winning_cell_1 % 3) * (SQUAREHEIGHT - 1) + 3 * (Winning_cell_1 % 3), (Winning_cell_1 / 3 + 1) * (SQUAREHEIGHT - 1) + 3 * (Winning_cell_1 / 3), hoveredX, 0);
+			Nokia5110_PrintBMP((Winning_cell_2 % 3) * (SQUAREHEIGHT - 1) + 3 * (Winning_cell_2 % 3), (Winning_cell_2 / 3 + 1) * (SQUAREHEIGHT - 1) + 3 * (Winning_cell_2 / 3), hoveredX, 0);
+			Nokia5110_PrintBMP((Winning_cell_3 % 3) * (SQUAREHEIGHT - 1) + 3 * (Winning_cell_3 % 3), (Winning_cell_3 / 3 + 1) * (SQUAREHEIGHT - 1) + 3 * (Winning_cell_3 / 3), hoveredX, 0);
+	
+			ToggleLED(3);
+			Clear_Led(2);
+			Clear_Led(3);
+			Clear_Led(4);
+			GPIO_PORTF_DATA_R = 0x04; // LED is blue (X won)
+			Nokia5110_DisplayBuffer();
+		}
+		else
+		{
+			Nokia5110_PrintBMP((Winning_cell_1 % 3) * (SQUAREHEIGHT - 1) + 3 * (Winning_cell_1 % 3), (Winning_cell_1 / 3 + 1) * (SQUAREHEIGHT - 1) + 3 * (Winning_cell_1 / 3), hoveredO, 0);
+			Nokia5110_PrintBMP((Winning_cell_2 % 3) * (SQUAREHEIGHT - 1) + 3 * (Winning_cell_2 % 3), (Winning_cell_2 / 3 + 1) * (SQUAREHEIGHT - 1) + 3 * (Winning_cell_2 / 3), hoveredO, 0);
+			Nokia5110_PrintBMP((Winning_cell_3 % 3) * (SQUAREHEIGHT - 1) + 3 * (Winning_cell_3 % 3), (Winning_cell_3 / 3 + 1) * (SQUAREHEIGHT - 1) + 3 * (Winning_cell_3 / 3), hoveredO, 0);
+			
+			ToggleLED(4);
+			Clear_Led(2);
+			Clear_Led(3);
+			Clear_Led(4);
+			GPIO_PORTF_DATA_R = 0x08;
+			Nokia5110_DisplayBuffer();
+		}
+		
+		Nokia5110_DisplayBuffer();
+		Timer2_delay(5);
+		GPIO_PORTF_DATA_R = 0x00; 
+		Clear_Led(2);
+		Clear_Led(3);
+		Clear_Led(4);
+		return 1; 
+	}
+	return 0; 
+}
