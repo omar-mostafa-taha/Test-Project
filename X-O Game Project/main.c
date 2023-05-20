@@ -18,13 +18,13 @@ int main(void)
 
 	PortF_Init(); 
 	PortB_Init();
-    UART_Init();
+    	UART_Init();
 	vidButtonsInit();
 	Nokia5110_Init(); 
 	Nokia5110_ClearBuffer(); 
 	Nokia5110_DisplayBuffer(); 
 	Intro(); 
-    CheckMode();
+    	CheckMode();
 	GameReset(); 
 	DrawGrid(); 
 	
@@ -35,36 +35,36 @@ int main(void)
 		
 		if(!GPIO_enuReadPinValue(GPIOF,PIN4)){
 			 NVIC_vidEnableInterrupt(30);
-       NVIC_vidSetPendingFlag(30);
+       			 NVIC_vidSetPendingFlag(30);
 		}
 
 		
 		if(!GPIO_enuReadPinValue(GPIOF,PIN3)){
 			 NVIC_vidEnableInterrupt(30);
-       NVIC_vidSetPendingFlag(30);
+       			 NVIC_vidSetPendingFlag(30);
 		}
 		
 		if(!GPIO_enuReadPinValue(GPIOF,PIN2)){
 			 NVIC_vidEnableInterrupt(30);
-       NVIC_vidSetPendingFlag(30);
+       			 NVIC_vidSetPendingFlag(30);
 		}
 		
 		if(!GPIO_enuReadPinValue(GPIOF,PIN1)){
 			 NVIC_vidEnableInterrupt(30);
-       NVIC_vidSetPendingFlag(30);
+       			 NVIC_vidSetPendingFlag(30);
 		}
 		
 			if(!GPIO_enuReadPinValue(GPIOF,PIN0)){
 			 NVIC_vidEnableInterrupt(30);
-       NVIC_vidSetPendingFlag(30);
+       	   		 NVIC_vidSetPendingFlag(30);
 		}
 
 
 		if(uart==1){
 			
 		UART_OutString("\n\r W-> Up  S-> Dwon  D->Right  A-> Left  X-> Play: ");
-     n = UART_InChar();
-   UART_OutChar(n);
+     		n = UART_InChar();
+   		UART_OutChar(n);
 		UART_OutString("\n\r");
 		switch(n){
 			case 'd':
@@ -122,11 +122,11 @@ void vidButtonsInit(){
 	GPIO_vidSetPinDigEnable(GPIOF,PIN4, ENABLE );
 	
 	/*Set Interrupt sense  to edge*/
-    GPIO_vidSelectInterruptSense(GPIOF, PIN0, GPIO_SENSE_EDGE);
+    	GPIO_vidSelectInterruptSense(GPIOF, PIN0, GPIO_SENSE_EDGE);
 	GPIO_vidSelectInterruptSense(GPIOF, PIN1, GPIO_SENSE_EDGE);
 	GPIO_vidSelectInterruptSense(GPIOF, PIN2, GPIO_SENSE_EDGE);
 	GPIO_vidSelectInterruptSense(GPIOF, PIN3, GPIO_SENSE_EDGE);
-    GPIO_vidSelectInterruptSense(GPIOF, PIN4, GPIO_SENSE_EDGE);
+    	GPIO_vidSelectInterruptSense(GPIOF, PIN4, GPIO_SENSE_EDGE);
 	
 	/*Clear inyerrupt from pins */
 	GPIO_vidClearInterrupt(GPIOF, PIN0);
