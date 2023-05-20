@@ -712,7 +712,7 @@ void PortF_Init(void)
   GPIOF_PCTL_R = 0x00000000; // 4) GPIO clear bit PCTL
   GPIOF_AFSEL_R = 0x00;      // 6) no alternate function
   NVIC_PRI7_R = (NVIC_PRI7_R & 0xff00ffff) | 0x00A00000;
-  EnableInterrupts();
+  //EnableInterrupts();
 }
 
 void PortB_Init(void)

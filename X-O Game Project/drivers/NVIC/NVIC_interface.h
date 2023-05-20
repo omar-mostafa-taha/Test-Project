@@ -9,6 +9,4 @@ void NVIC_vidDisableInterrupt(u8 u8InterruptNumber);
 void NVIC_vidSetPendingFlag(u8 u8InterruptNumber);
 void NVIC_vidClearPendingFlag(u8 u8InterruptNumber);
 
-u8 NVIC_u8GetActiveFlag(u8 u8InterruptNumber);
-
 #endif
