@@ -68,21 +68,4 @@ void NVIC_vidClearPendingFlag(u8 u8InterruptNumber)
 
 
 
-u8 NVIC_u8GetActiveFlag(u8 u8InterruptNumber)
-{
-	u8 u8Result;
-	
-	if ( u8InterruptNumber <= 31)
-	{
-		u8Result = GET_BIT(NVIC_ACTIVE0_R, u8InterruptNumber);
-	}
-	
-	else if ( u8InterruptNumber <= 63)
-	{
-		u8InterruptNumber -= 32;
-		u8Result = GET_BIT(NVIC_ACTIVE1_R, u8InterruptNumber);
-	}
-	return u8Result;
-	
-}
 
