@@ -15,9 +15,4 @@
 #define NVIC_UNPEND0_R          (*((volatile unsigned long *)0xE000E280))
 #define NVIC_UNPEND1_R          (*((volatile unsigned long *)0xE000E284))
 
-
-#define NVIC_ACTIVE0_R          (*((volatile unsigned long *)0xE000E300))
-#define NVIC_ACTIVE1_R          (*((volatile unsigned long *)0xE000E304))
-
-
 #endif
