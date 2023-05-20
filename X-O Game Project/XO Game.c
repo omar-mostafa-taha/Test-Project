@@ -419,9 +419,9 @@ void StartGame()
 			Nokia5110_OutString("Busy");
 			Nokia5110_SetCursor(7, 5);
 			Nokia5110_OutString("Cell");
-      Set_Led(5);
+      			Set_Led(5);
 			ToggleLED(2);
-      Clear_Led(5);
+      			Clear_Led(5);
 			displayPlayer();
 		}
 		Timer2_delay(10);
